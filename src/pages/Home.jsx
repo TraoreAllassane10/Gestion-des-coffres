@@ -1,99 +1,142 @@
+import { useEffect, useState } from "react";
 import etudes from "../../public/images/bourse-detudes.png";
-import business from "../../public/images/business-case.png";
-import facture from "../../public/images/facture-dachat.png";
-import fete from "../../public/images/fete.png";
-import tontine from "../../public/images/plan-depargne.png";
-import voyage from "../../public/images/sac-de-voyage.png";
-import sante from "../../public/images/sante.png";
+import bus from "../../public/images/business-case.png";
+import fact from "../../public/images/facture-dachat.png";
+import fet from "../../public/images/fete.png";
+import ton from "../../public/images/plan-depargne.png";
+import voy from "../../public/images/sac-de-voyage.png";
+import sant from "../../public/images/sante.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+  const [etude, setEtude] = useState(0);
+  const [business, setBusiness] = useState(0);
+  const [facture, setFacture] = useState(0);
+  const [fete, setFete] = useState(0);
+  const [tontine, setTontine] = useState(0);
+  const [voyage, setVoyage] = useState(0);
+  const [sante, setSante] = useState(0);
+
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if (
+      !localStorage.getItem("etude") ||
+      !localStorage.getItem("business") ||
+      !localStorage.getItem("facture") ||
+      !localStorage.getItem("fete") ||
+      !localStorage.getItem("tontine") ||
+      !localStorage.getItem("voyage") ||
+      !localStorage.getItem("sante")
+    ) {
+      localStorage.setItem("etude", 0);
+      localStorage.setItem("business", 0);
+      localStorage.setItem("facture", 0);
+      localStorage.setItem("fete", 0);
+      localStorage.setItem("tontine", 0);
+      localStorage.setItem("voyage", 0);
+      localStorage.setItem("sante", 0);
+    }
+    else {
+      setEtude(localStorage.getItem("etude"));
+      setBusiness(localStorage.getItem("business"));
+      setFacture(localStorage.getItem("facture"));
+      setFete(localStorage.getItem("fete"));
+      setTontine(localStorage.getItem("tontine"));
+      setVoyage(localStorage.getItem("voyage"));
+      setSante(localStorage.getItem("sante"))
+    }
+  }, []);
+
   return (
     <div className="max-w-2xl mx-auto py-16">
       <h1 className="text-2xl font-bold mb-6">Mes Coffres</h1>
 
       <div className="text-center mb-6">
-        <h2>Soldes Total des coffres</h2>
-        <span>0F</span>
+        <h2 className="text-xl font-medium">Soldes Total des coffres</h2>
+        <span className="text-xl">0F</span>
       </div>
 
       {/* Section Coffres */}
       <div>
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/etude" className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-indigo-500 w-[130px] flex items-center justify-center rounded-l">
             <img src={etudes} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Etudes</p>
-            <p>0F</p>
+            <p>{etude}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/business" className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-green-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={business} width={90} height={90} />
+            <img src={bus} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Business</p>
-            <p>0F</p>
+            <p>{business}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/facture" className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-yellow-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={facture} width={90} height={90} />
+            <img src={fact} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Facture</p>
-            <p>0F</p>
+            <p>{facture}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/fete"  className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-red-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={fete} width={90} height={90} />
+            <img src={fet} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Fête</p>
-            <p>0F</p>
+            <p>{fete}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/tontine"  className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-purple-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={tontine} width={90} height={90} />
+            <img src={ton} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Tontine</p>
-            <p>0F</p>
+            <p>{tontine}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/voyage"  className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-cyan-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={voyage} width={90} height={90} />
+            <img src={voy} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Voyage</p>
-            <p>0F</p>
+            <p>{voyage}F</p>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white border-gray-400 rounded flex mb-4">
+        <a href="/coffres/sante"  className="bg-white border-gray-400 rounded flex mb-4">
           <div className="p-2 bg-orange-500 w-[130px] flex items-center justify-center rounded-l">
-            <img src={sante} width={90} height={90} />
+            <img src={sant} width={90} height={90} />
           </div>
 
           <div className="px-4 flex items-center justify-between text-gray-800 w-full text-xl">
             <p>Santé</p>
-            <p>0F</p>
+            <p>{sante}F</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );

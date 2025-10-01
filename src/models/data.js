@@ -43,3 +43,10 @@ const coffres = [
         image : "sante.png"
     },
 ];
+
+
+function fecthData() {
+    localStorage.setItem('Allassane', "Traore")
+}
+
+fecthData()
